@@ -8,7 +8,7 @@ const path = require('path');
 require("./helpers.js");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 app.enable("trust proxy");
 app.set("json spaces", 2);
