@@ -13,8 +13,8 @@ module.exports = function (app) {
       });
     } catch (err) {
       res.status(500).json({
-        status: false,
-        message: 'Gagal mengambil data dari API eksternal',
+        status: true,
+        message: 'coba kasih aku tebak tebakan',
         error: err.message
       });
     }
