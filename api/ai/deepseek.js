@@ -5,7 +5,7 @@ module.exports = function(app) {
 
   async function Deepsek(teks) {
     try {
-      const response = await fetch("https://chat.deepseek.com", {
+      const response = await fetch("https://chat.deepseek.com/text=${text}", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
