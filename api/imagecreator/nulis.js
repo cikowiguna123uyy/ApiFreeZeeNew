@@ -12,14 +12,14 @@ module.exports = function (app) {
     }
 
     try {
-      const apiUrl = `https://api.siputzx.my.id/api/m/nulis?text=${encodeURIComponent(text)}&name=${encodeURIComponent(name)}&class=${encodeURIComponent(className)}`;
+      const apiUrl = `https://lemon-write.vercel.app/api/generate-book?text=${encodeURIComponent(text)}&name=${encodeURIComponent(name)}&class=${encodeURIComponent(className)}`;
       const response = await axios.get(apiUrl, {
         responseType: 'arraybuffer'
       });
 
       res.set('Content-Type', 'image/png');
       res.send(response.data);
-    } catch (err) {
+    } catch(err) {
       res.status(500).json({
         status: false,
         message: 'Gagal mengambil gambar dari API eksternal',
