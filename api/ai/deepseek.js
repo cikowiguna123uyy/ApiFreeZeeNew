@@ -1,9 +1,19 @@
 const fetch = require('node-fetch');
 
+module.exports = function(app) {
+  const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || "sk-0365d168a755400b8875870bce6b137b";
+
   async function Deepsek(teks) {
     try {
-      const response = await fetch("https://api.siputzx.my.id/get/documentation#/AI/get_api_ai_deepseek_llm_67b_chat", {
+      const response = await fetch("https://chat.deepseek.com", {
         method: "POST",
+        headers: {
+          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
+          "Content-Type": "application/json"
+          // Optional headers:
+          // "HTTP-Referer": "",
+          // "X-Title": ""
+        },
         body: JSON.stringify({
           model: "deepseek/deepseek-r1:free",
           messages: [
@@ -29,7 +39,7 @@ const fetch = require('node-fetch');
   }
 
   app.get('/ai/deepseek', async (req, res) => {
-    const { text } = req.query;
+    const { text, apikey } = req.query;
 
     if (!text) {
       return res.json({ status: false, error: 'Text is required' });
