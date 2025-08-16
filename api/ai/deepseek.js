@@ -1,19 +1,9 @@
 const fetch = require('node-fetch');
 
-module.exports = function(app) {
-  const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || "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";
-
   async function Deepsek(teks) {
     try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      const response = await fetch("https://api.siputzx.my.id/get/documentation#/AI/get_api_ai_deepseek_llm_67b_chat", {
         method: "POST",
-        headers: {
-          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
-          "Content-Type": "application/json"
-          // Optional headers:
-          // "HTTP-Referer": "",
-          // "X-Title": ""
-        },
         body: JSON.stringify({
           model: "deepseek/deepseek-r1:free",
           messages: [
@@ -39,7 +29,7 @@ module.exports = function(app) {
   }
 
   app.get('/ai/deepseek', async (req, res) => {
-    const { text, apikey } = req.query;
+    const { text } = req.query;
 
     if (!text) {
       return res.json({ status: false, error: 'Text is required' });
